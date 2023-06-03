@@ -19,11 +19,11 @@ try {
 const login=async(req,res)=>{
 try {
     const {email,password}=req.body;
-    const user=await User.find({email})
+    const user=await User.findOne({email})
     if(user){
         bcrypt.compare(password,user.password,(err,result)=>{
             if(result){
-                const token=jwt.sign(user,process.env.SECRET_KEY,{expiresIn:"7d"})
+                const token=jwt.sign({name:user.name,email},process.env.SECRET_KEY)
                 res.status(201).send({message:"Login Success",token,error:false});
             }
             else res.status(401).send({message:'Login Failed',error:true});
