@@ -1,0 +1,15 @@
+const mongoose =require("mongoose");
+const userSchema=new mongoose.Schema({
+ name:String,
+ email:String,
+ password:String,
+ address:{
+    street:String,
+    city:String,
+    state:String,
+    country:String,
+    zip:String,
+ }
+},{timestamps:true});
+const User=mongoose.model("user",userSchema);
+module.exports=User;
