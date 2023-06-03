@@ -47,7 +47,7 @@ try {
                     if(err)res.status(500).send({message:err.message,error:true});
                     else {
                         await User.updateOne({_id:id},{$set:{password:hashed}})
-                        res.status(204).send({message:"Account Created",error:false});
+                        res.status(204).send({message:"Password Updated",error:false});
                     }
                 })
             }
